@@ -29,6 +29,7 @@ const signIn = {
     tryLogin: async(req, res) => {
         const { email, password } = req.body;
         const url = process.env.API_URL;
+        const JWT_AUD = process.env.JWT_AUD;
         try {
             // const response = await axios.post(url, dataMapper.getJWT(email,password));
             const response = await axios ({
@@ -40,7 +41,7 @@ const signIn = {
                             signIn(input: $input) {
                             currentUser {
                                 slug
-                                jwtToken (aud:"${process.env.JWT_AUD}") {
+                                jwtToken (aud:"${JWT_AUD}") {
                                     token
                                 }
                             }
@@ -82,6 +83,7 @@ const signIn = {
     doubleAuthLogin: async(req, res) => {
         const { otpSessionChallenge, otpAttempt } = req.body;
         const url = process.env.API_URL;
+        const JWT_AUD = process.env.JWT_AUD;
         try {
             // const response = await axios.post(url, dataMapper.AuthWith2FA(otpSessionChallenge, otpAttempt));
             const response = await axios ({
@@ -92,7 +94,7 @@ const signIn = {
                         mutation SignInMutation($input: signInInput!) {
                             signIn(input: $input) {
                             currentUser {
-                                jwtToken (aud:"${process.env.JWT_AUD}") {
+                                jwtToken (aud:"${JWT_AUD}") {
                                     token
                                 }
                             }
