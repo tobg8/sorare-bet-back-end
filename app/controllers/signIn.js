@@ -32,9 +32,9 @@ const signIn = {
         try {
             const response = await axios.post(url, dataMapper.getJWT(email,password));
             console.log(process.env.JWT_AUD);
-            console.log(response.data.locations, '*****************')
+            console.log(response.data, '*****************')
             // if we dont get currentUser or otpSessionChallenge there is no user with this credentials
-            if (!response.data.signIn.otpSessionChallenge && !response.data.signIn.currentUser) {
+            if (!response.data.data.signIn.otpSessionChallenge && !response.data.data.signIn.currentUser) {
                 res.status(404).json({
                     error: 'No user found, double check credentials',
                 });
