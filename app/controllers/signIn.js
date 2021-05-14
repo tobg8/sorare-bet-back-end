@@ -1,6 +1,5 @@
 const axios = require('axios');
 const bcrypt = require('bcrypt');
-const dataMapper = require('../dataMapper');
 
 const signIn = {
     getSalt: async (req, res) => {
@@ -62,7 +61,6 @@ const signIn = {
                     },
                 },
             });
-            console.log(response.data, '*****');
             // if we dont get currentUser or otpSessionChallenge there is no user with this credentials
             if (!response.data.data.signIn.otpSessionChallenge && !response.data.data.signIn.currentUser) {
                 res.status(404).json({
@@ -165,10 +163,72 @@ const signIn = {
             console.log(error);
         }
     },
-    getCards: async () => {
+    getCards: async (req, res) => {
         const { jwt } = req.body;
-        const url = process.env.API_URL.
-        console.log('ok', jwt);
+        const url = process.env.API_URL;
+        try {
+            if(!jwt) {
+                res.status(400).json({
+                    error: 'not signed in',
+                });
+            }
+
+            const response = await axios ({
+                url: url,
+                method: 'post',
+                headers: {
+                    authorization: `Bearer ${jwt}`
+                },
+                data: {
+                    query: `
+                    {
+                        currentUser {
+                          cards {
+                            slug
+                            id
+                            rarity
+                            pictureUrl
+                            player {
+                              status {
+                                lastFiveSo5AverageScore
+                              }
+                              activeClub {
+                                upcomingGames(first: 3) {
+                                  date
+                                  id
+                                  away {
+                                    name
+                                    pictureUrl
+                                  }
+                                  home {
+                                    name
+                                    pictureUrl
+                                  }
+                                  so5Fixture {
+                                    aasmState
+                                    canCompose
+                                    id
+                                    gameWeek
+                                    startDate
+                                    endDate
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                      
+                    `
+                },
+            });
+            if(response.status === 200) {
+                res.status(200).json(response.data.data.currentUser.cards);
+            }
+        } 
+        catch (error) {
+            console.log(error);
+        }
     },
 }
 
