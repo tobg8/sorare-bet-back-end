@@ -62,7 +62,7 @@ const signIn = {
                     },
                 },
             });
-            console.log(response.data.errors.locations, '*****');
+            console.log(response.data.errors, '*****');
             // if we dont get currentUser or otpSessionChallenge there is no user with this credentials
             if (!response.data.data.signIn.otpSessionChallenge && !response.data.data.signIn.currentUser) {
                 res.status(404).json({
