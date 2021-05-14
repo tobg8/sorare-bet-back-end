@@ -30,9 +30,37 @@ const signIn = {
         const { email, password } = req.body;
         const url = process.env.API_URL;
         try {
-            const response = await axios.post(url, dataMapper.getJWT(email,password));
-            console.log(process.env.JWT_AUD);
-            console.log(response.data.errors, '*****************')
+            // const response = await axios.post(url, dataMapper.getJWT(email,password));
+            const response = await axios ({
+                url: url,
+                method: 'post',
+                data: {
+                    query: `
+                        mutation SignInMutation($input: signInInput!) {
+                            signIn(input: $input) {
+                            currentUser {
+                                slug
+                                jwtToken (aud:"${process.env.JWT_AUD}") {
+                                    token
+                                }
+                            }
+                            otpSessionChallenge
+                            errors {
+                                message
+                                code 
+                                path
+                            }
+                            } 
+                        }
+                    `
+                },
+                variables: {
+                    input: {
+                        email,
+                        password,
+                    },
+                },
+            })
             // if we dont get currentUser or otpSessionChallenge there is no user with this credentials
             if (!response.data.data.signIn.otpSessionChallenge && !response.data.data.signIn.currentUser) {
                 res.status(404).json({
@@ -63,7 +91,7 @@ const signIn = {
                         mutation SignInMutation($input: signInInput!) {
                             signIn(input: $input) {
                             currentUser {
-                                jwtToken (aud:"${JWT_AUD}") {
+                                jwtToken (aud:"${process.env.JWT_AUD}") {
                                     token
                                 }
                             }
