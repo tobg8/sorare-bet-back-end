@@ -4,6 +4,9 @@
   "main": "index.js",
   "author": "theo",
   "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
   "dependencies": {
     "axios": "^0.21.1",
     "bcrypt": "^5.0.1",
