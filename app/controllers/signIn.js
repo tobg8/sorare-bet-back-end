@@ -54,7 +54,36 @@ const signIn = {
         const { otpSessionChallenge, otpAttempt } = req.body;
         const url = process.env.API_URL;
         try {
-            const response = await axios.post(url, dataMapper.AuthWith2FA(otpSessionChallenge, otpAttempt));
+            // const response = await axios.post(url, dataMapper.AuthWith2FA(otpSessionChallenge, otpAttempt));
+            const response = await axios ({
+                url: url,
+                method: 'post',
+                data: {
+                    query: `
+                        mutation SignInMutation($input: signInInput!) {
+                            signIn(input: $input) {
+                            currentUser {
+                                jwtToken (aud:"${JWT_AUD}") {
+                                    token
+                                }
+                            }
+                            otpSessionChallenge
+                            errors {
+                                message
+                                code 
+                                path
+                            }
+                            } 
+                        }
+                    `
+                },
+                variables: {
+                    input: {
+                        otpSessionChallenge,
+                        otpAttempt,
+                    },
+                },
+            });
             // If bad otpCode
             if (response.data.data.signIn.errors.length > 0) {
                 return res.status(400).json({
