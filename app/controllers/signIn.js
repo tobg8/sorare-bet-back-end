@@ -32,7 +32,7 @@ const signIn = {
         try {
             const response = await axios.post(url, dataMapper.getJWT(email,password));
             console.log(process.env.JWT_AUD);
-            console.log(response.data, '*****************')
+            console.log(response.data.errors.locations, '*****************')
             // if we dont get currentUser or otpSessionChallenge there is no user with this credentials
             if (!response.data.data.signIn.otpSessionChallenge && !response.data.data.signIn.currentUser) {
                 res.status(404).json({
@@ -43,7 +43,7 @@ const signIn = {
             if (response.data.data.signIn.otpSessionChallenge && response.data.data.signIn.currentUser === null) {
                 res.json(response.data.data.signIn);
             };
-            // ! if no 2FA account sometimes you get access to data instantly and sometimes they send an code to email.
+            // ! if no 2FA account sometimes you get access to data instantly and sometimes they send a code to email.
             // ! email code works like 2FA.
         } 
         catch (error) {
