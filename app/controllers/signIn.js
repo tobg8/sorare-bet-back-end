@@ -40,7 +40,7 @@ const signIn = {
                             signIn(input: $input) {
                             currentUser {
                                 slug
-                                jwtToken (aud:${JWT_AUD}) {
+                                jwtToken (aud:"${JWT_AUD}") {
                                     token
                                 }
                             }
@@ -92,7 +92,7 @@ const signIn = {
                         mutation SignInMutation($input: signInInput!) {
                             signIn(input: $input) {
                             currentUser {
-                                jwtToken (aud:${JWT_AUD}) {
+                                jwtToken (aud:"${JWT_AUD}") {
                                     token
                                 }
                             }
@@ -193,7 +193,7 @@ const signIn = {
                                 lastFiveSo5AverageScore
                               }
                               activeClub {
-                                upcomingGames(first: 3) {
+                                upcomingGames(first: 2) {
                                   date
                                   id
                                   away {
