@@ -6,7 +6,7 @@ const router = require('./app/router');
 
 
 app.use(cors({
-    origin: 'http://localhost:8080'
+    origin: 'http://localhost:8082'
 }));
 app.use(express.json());
 
