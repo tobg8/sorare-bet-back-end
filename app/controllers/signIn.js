@@ -52,12 +52,12 @@ const signIn = {
                             }
                             } 
                         }
-                    `
-                },
-                variables: {
-                    input: {
-                        email,
-                        password,
+                    `,
+                    variables: {
+                        input: {
+                            email,
+                            password,
+                        },
                     },
                 },
             });
@@ -104,12 +104,12 @@ const signIn = {
                             }
                             } 
                         }
-                    `
-                },
-                variables: {
-                    input: {
-                        otpSessionChallenge,
-                        otpAttempt,
+                    `,
+                    variables: {
+                        input: {
+                            otpSessionChallenge,
+                            otpAttempt,
+                        },
                     },
                 },
             });
