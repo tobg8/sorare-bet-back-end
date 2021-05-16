@@ -41,7 +41,7 @@ const signIn = {
                             currentUser {
                                 id
                                 slug
-                                jwtToken (aud:"${JWT_AUD}") {
+                                jwtToken (aud:${JWT_AUD}) {
                                     token
                                 }
                             }
@@ -93,7 +93,7 @@ const signIn = {
                         mutation SignInMutation($input: signInInput!) {
                             signIn(input: $input) {
                             currentUser {
-                                jwtToken (aud:"${JWT_AUD}") {
+                                jwtToken (aud:${JWT_AUD}) {
                                     token
                                 }
                             }
