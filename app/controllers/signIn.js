@@ -39,8 +39,9 @@ const signIn = {
                         mutation SignInMutation($input: signInInput!) {
                             signIn(input: $input) {
                             currentUser {
+                                id
                                 slug
-                                jwtToken (aud:${JWT_AUD}) {
+                                jwtToken (aud:"${JWT_AUD}") {
                                     token
                                 }
                             }
@@ -92,7 +93,7 @@ const signIn = {
                         mutation SignInMutation($input: signInInput!) {
                             signIn(input: $input) {
                             currentUser {
-                                jwtToken (aud:${JWT_AUD}) {
+                                jwtToken (aud:"${JWT_AUD}") {
                                     token
                                 }
                             }
@@ -119,7 +120,6 @@ const signIn = {
                     error: 'invalid code',
                 })
             }
-
             res.status(200).json(response.data.data.signIn.currentUser)
         } 
         catch (error) {
@@ -146,6 +146,7 @@ const signIn = {
                         {
                         currentUser {
                             slug
+                            id
                             profile {
                                 pictureUrl
                             }
@@ -188,6 +189,7 @@ const signIn = {
                             id
                             rarity
                             pictureUrl
+                            position
                             player {
                               status {
                                 lastFiveSo5AverageScore

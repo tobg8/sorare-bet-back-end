@@ -13,6 +13,8 @@
     "cors": "^2.8.5",
     "dotenv": "^9.0.2",
     "express": "^4.17.1",
-    "graphql": "^15.5.0"
+    "graphql": "^15.5.0",
+    "node-cron": "^3.0.0",
+    "node-schedule": "^2.0.0"
   }
 }
