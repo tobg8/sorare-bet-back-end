@@ -112,11 +112,14 @@ const registerController = {
                     },
                 })
                 if (managerAlreadyRegistered) {
-                    console.log(managerAlreadyRegistered)
                     return res.status(403).json({
                         error: 'You are already registered',
                     });
                 }
+
+                // Remove 1 slot from league and add one to registered slots
+                await currentLeague.decrement('max_places');
+                await currentLeague.increment('registered_places');
 
                 // Create record in Registration
                 const newRegistration = await Registration.create({
@@ -136,8 +139,9 @@ const registerController = {
                     })
                 }
                 res.status(200).json({
-                    message: `You are registered to the league ${gwLeague}` 
-                })
+                    message: `You are registered to the league ${gwLeague}`,
+                    registered: true,
+                });
 
             } catch (error) {
                 console.log(error);
@@ -157,10 +161,8 @@ const registerController = {
                 },
             },
         });
-        console.log(managerAlreadyRegistered);
         if (managerAlreadyRegistered) {
-            console.log(managerAlreadyRegistered)
-            return res.status(403).json({
+            return res.status(200).json({
                 registered: true,
                 message: 'You are registered'
             });

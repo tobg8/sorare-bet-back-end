@@ -10,12 +10,14 @@ router.post('/login', signInController.tryLogin);
 router.post('/auth', signInController.doubleAuthLogin);
 router.post('/manager', signInController.getUserInfos);
 router.post('/cards', signInController.getCards);
-router.post('/leagues', gamesController.getLeagues);
 
+router.post('/leagues', gamesController.getLeagues);
+router.post('/places', gamesController.getRemainingPlaces);
 
 // own db
 router.post('/registration', registerController.handleRegistration);
 router.post('/registered', registerController.isManagerRegistered);
+
 
 
 module.exports = router;
