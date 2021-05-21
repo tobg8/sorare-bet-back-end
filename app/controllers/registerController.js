@@ -7,9 +7,9 @@ const {
 
 const registerController = {
     handleRegistration: async (req, res) => {
-        const {jwt, team, userName, userId} = req.body;
+        const {jwt, team, userName, userId, userPicture} = req.body;
         // VERIFICATION
-        
+        console.log(req.body);
         // Team is composed of 5 cards
         if (team.length !==5) {
             return res.status(400).json({
@@ -90,7 +90,7 @@ const registerController = {
                     }
                 });
                 // if no more slots
-                if (currentLeague.dataValues.registered_places === 500) {
+                if (currentLeague.dataValues.registered_places === 200) {
                     return res.status(410).json({
                         error: 'The league is actually closed'
                     });
@@ -125,16 +125,18 @@ const registerController = {
                 const newRegistration = await Registration.create({
                     manager_name: userName,
                     manager_id: userId,
+                    manager_picture: userPicture,
                     total_score: 0,
-                    league_id: leagueId
+                    league_id: leagueId,
                 });
 
                 const registrationId = newRegistration.dataValues.id;
-
+                
                 // Create records in Card
                 for (const card of team)  {
                     await Card.create({
                         slug: card.cardName,
+                        picture_url: card.url,
                         registration_id: registrationId, 
                     })
                 }

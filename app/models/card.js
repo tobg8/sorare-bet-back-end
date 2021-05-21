@@ -5,6 +5,7 @@ class Card extends Sequelize.Model {};
 
 Card.init({
     slug: Sequelize.STRING,
+    picture_url: Sequelize.STRING,
 }, {
     sequelize,
     tableName: "card",

@@ -1,6 +1,9 @@
 const axios = require('axios');
+const { compareSync } = require('bcrypt');
 const {
     League,
+    Card,
+    Registration,
 } = require('../models');
 
 const gamesController = {
@@ -51,6 +54,67 @@ const gamesController = {
         } 
         catch (error) {
              console.log(error);
+        }
+    },
+    getManagersFromLeague: async(req, res) => {
+        const { gameWeek } = req.body;
+        if(!gameWeek) {
+            return res.status(400);
+        }
+        const league = await League.findOne({
+            where: {
+                game_week: gameWeek,
+            }
+        });
+        if (!league) {
+            return res.status(400);
+        }
+
+        const managers = await Registration.findAll({
+            where: {
+                league_id: league.dataValues.id,
+            }
+        });
+        console.log(managers);
+
+        const data = []
+        managers.map((registration) => {
+            data.push({
+                manager_name: registration.dataValues.manager_name,
+                manager_picture: registration.dataValues.manager_picture,
+                game_week: gameWeek,
+                id: registration.dataValues.id,
+            })
+        });
+        res.status(200).json(data);
+    },
+    getTeamFromManager: async (req, res) => {
+        const {registrationId, gameWeek } = req.body;
+        try {
+            const team = await Card.findAll({
+                where: {
+                    registration_id: registrationId
+                }
+            }, {
+                include: {
+                    model: League,
+                    where: {
+                        game_week: gameWeek,
+                    }
+                }
+            });
+            const managerTeam = [];
+            team.map((card) => {
+                managerTeam.push({
+                    id: card.dataValues.id,
+                    slug: card.dataValues.slug,
+                    picture_url: card.dataValues.picture_url,
+                });
+            });
+            res.status(200).json(managerTeam);
+        } 
+        catch (error) {
+            console.log(error);
         }
     }
 }

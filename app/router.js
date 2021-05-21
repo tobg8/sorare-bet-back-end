@@ -13,6 +13,8 @@ router.post('/cards', signInController.getCards);
 
 router.post('/leagues', gamesController.getLeagues);
 router.post('/places', gamesController.getRemainingPlaces);
+router.post('/manager-in-league', gamesController.getManagersFromLeague);
+router.post('/manager-team', gamesController.getTeamFromManager);
 
 // own db
 router.post('/registration', registerController.handleRegistration);
