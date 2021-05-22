@@ -37,7 +37,7 @@ module.exports.cron_job = async () =>
                 //If league does not exist in db it means it's the new one
                 if (!leagueAlreadyInDB) {
                         const newLeague = await League.create({
-                             game_week:  league.aasmState, 
+                             game_week:  league.gameWeek, 
                              duration: league.slug,
                              open_date: league.startDate,
                              close_date: league.endDate,
@@ -48,7 +48,13 @@ module.exports.cron_job = async () =>
                         });
                 }
 
-                console.log(league, leagueAlreadyInDB);
+                if(league.aasmState !== leagueAlreadyInDB.status) {
+                        leagueAlreadyInDB.status = league.aasmState;
+                        leagueAlreadyInDB.open = league.canCompose;
+                        if (league.aasmState === 'closed') {
+                                console.log('we got to do scores here');
+                        }
+                }
         }
                 // si elle est nouvelle je l'insère en bdd je la met à open etc
                 // Si elle est pas nouvelle et qu'elle est passée de opened à started on modifie les propriété nécessaires
