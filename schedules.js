@@ -1,8 +1,6 @@
 module.exports.cron_job = function()
 {
-        console.log('Eating breakfast...');
-        Kitchen.eat();
-        console.log('done.');
+        console.log('its working');
 }
 
 require('make-runnable');
