@@ -36,27 +36,30 @@ module.exports.cron_job = async () =>
                 });
                 //If league does not exist in db it means it's the new one
                 if (!leagueAlreadyInDB) {
-                        return newLeague = await League.create({
-                             game_week:  league.gameWeek, 
-                             duration: league.slug,
-                             open_date: league.startDate,
-                             close_date: league.endDate,
-                             max_places: 200,
-                             registered_places: 0,
-                             status: league.aasmState,
-                             open: league.canCompose,
+                        newLeague = await League.create({
+                                game_week:  league.gameWeek, 
+                                duration: league.slug,
+                                open_date: league.startDate,
+                                close_date: league.endDate,
+                                max_places: 200,
+                                registered_places: 0,
+                                status: league.aasmState,
+                                open: league.canCompose,
                         });
                 }
-                // If league doesnt have same status we modif values, but for closed we do score.
-                if(league.aasmState !== leagueAlreadyInDB.status) {
-                        console.log('heeloooooo');
-                        leagueAlreadyInDB.status = league.aasmState;
-                        leagueAlreadyInDB.open = league.canCompose;
-                        await leagueAlreadyInDB.save();
-                        if (league.aasmState === 'closed') {
-                                console.log('we got to do scores here');
+                if (leagueAlreadyInDB) {
+                         // If league doesnt have same status we modif values, but for closed we do score.
+                        if(league.aasmState !== leagueAlreadyInDB.status) {
+                                console.log('heeloooooo');
+                                leagueAlreadyInDB.status = league.aasmState;
+                                leagueAlreadyInDB.open = league.canCompose;
+                                await leagueAlreadyInDB.save();
+                                if (league.aasmState === 'closed') {
+                                        console.log('we got to do scores here');
+                                }
                         }
                 }
+               
         }
                 // si elle est nouvelle je l'insère en bdd je la met à open etc
                 // Si elle est pas nouvelle et qu'elle est passée de opened à started on modifie les propriété nécessaires
