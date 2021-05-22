@@ -1,5 +1,5 @@
 const axios = require('axios');
-const gamesController = require('./controllers/gamesController');
+const gamesController = require('./app/controllers/gamesController');
 const { League } = require ('../models');
 
 module.exports.cron_job = async () =>
