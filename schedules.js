@@ -52,6 +52,7 @@ module.exports.cron_job = async () =>
                         console.log('heeloooooo');
                         leagueAlreadyInDB.status = league.aasmState;
                         leagueAlreadyInDB.open = league.canCompose;
+                        await leagueAlreadyInDB.save();
                         if (league.aasmState === 'closed') {
                                 console.log('we got to do scores here');
                         }
