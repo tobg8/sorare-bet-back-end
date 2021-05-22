@@ -161,7 +161,7 @@ const signIn = {
             }
         } 
         catch (error) {
-            console.log(error);
+            return res.json(error);
         }
     },
     getCards: async (req, res) => {
