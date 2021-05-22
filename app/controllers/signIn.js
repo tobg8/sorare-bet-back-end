@@ -62,6 +62,7 @@ const signIn = {
                     },
                 },
             });
+            console.log(response.data);
             // if we dont get currentUser or otpSessionChallenge there is no user with this credentials
             if (!response.data.data.signIn.otpSessionChallenge && !response.data.data.signIn.currentUser) {
                 res.status(404).json({
@@ -161,7 +162,7 @@ const signIn = {
             }
         } 
         catch (error) {
-            return res.json(error);
+            return res.json(error, '&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&');
         }
     },
     getCards: async (req, res) => {

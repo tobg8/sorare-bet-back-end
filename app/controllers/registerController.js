@@ -150,7 +150,10 @@ const registerController = {
             }
     },
     isManagerRegistered: async (req, res) => {
-        const { managerId} = req.body;
+        const { managerId } = req.body;
+        if (!managerId) {
+            return
+        }
         const managerAlreadyRegistered = await Registration.findOne({
             where: {
                 manager_id: managerId,
