@@ -48,7 +48,7 @@ module.exports.cron_job = async () =>
                 }
 
                 console.log(league, leagueAlreadyInDB);
-        })
+        }
                 // si elle est nouvelle je l'insère en bdd je la met à open etc
                 // Si elle est pas nouvelle et qu'elle est passée de opened à started on modifie les propriété nécessaires
                 // SI elle est passée de started à closed on fait les scores on modifie les données.
