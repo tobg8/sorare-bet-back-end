@@ -49,6 +49,7 @@ module.exports.cron_job = async () =>
                 }
                 // If league doesnt have same status we modif values, but for closed we do score.
                 if(league.aasmState !== leagueAlreadyInDB.status) {
+                        console.log('heeloooooo');
                         leagueAlreadyInDB.status = league.aasmState;
                         leagueAlreadyInDB.open = league.canCompose;
                         if (league.aasmState === 'closed') {
