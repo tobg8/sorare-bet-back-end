@@ -26,11 +26,12 @@ module.exports.cron_job = async () =>
         });
 
         const newLeagues = fetchLeagues.data.data.featuredSo5Fixtures;
+        console.log(newLeagues);
         // Pour chacune des league reçues je vais voir si elle existe dans ma bdd.
         for (const league of newLeagues) {
                 const leagueAlreadyInDB = await League.findOne({
                         where: {
-                                game_week: league.aasmState
+                                game_week: league.gameWeek,
                         }
                 });
                 //If league does not exist in db it means it's the new one
