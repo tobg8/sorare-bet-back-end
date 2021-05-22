@@ -15,6 +15,7 @@ router.post('/leagues', gamesController.getLeagues);
 router.post('/places', gamesController.getRemainingPlaces);
 router.post('/manager-in-league', gamesController.getManagersFromLeague);
 router.post('/manager-team', gamesController.getTeamFromManager);
+router.post('/managers-in-league', gamesController.getManagersTeamFromLeague);
 
 // own db
 router.post('/registration', registerController.handleRegistration);

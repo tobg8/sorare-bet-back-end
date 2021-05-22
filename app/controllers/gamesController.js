@@ -83,6 +83,7 @@ const gamesController = {
                 manager_name: registration.dataValues.manager_name,
                 manager_picture: registration.dataValues.manager_picture,
                 game_week: gameWeek,
+                manager_id: registration.dataValues.manager_id,
                 id: registration.dataValues.id,
             })
         });
@@ -114,6 +115,30 @@ const gamesController = {
             res.status(200).json(managerTeam);
         } 
         catch (error) {
+            console.log(error);
+        }
+    },
+    getManagersTeamFromLeague: async (req, res) => {
+        const { gameWeek } = req.body;
+        try {
+            // retrieve league Id
+            const league = await League.findOne({
+                where: {
+                    game_week: gameWeek
+                }
+            });
+            const leagueId = league.dataValues.id
+            // Get registrations + teamComp where leagueId match
+            const registrations = await Registration.findAll({
+                where: {
+                    league_id: leagueId,
+                }, include: ['cards'],
+            });
+            const managers = [];
+            registrations.map((manager) => managers.push(manager.dataValues));
+            res.status(200).json(managers);
+        }
+         catch (error) {
             console.log(error);
         }
     }
