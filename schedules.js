@@ -93,10 +93,8 @@ module.exports.cron_job = async () =>
                                                         fetchScores.data.data.cards.map((player) => {
                                                                 teamWithScore.push({
                                                                         slug: player.slug,
-                                                                        // score: player.so5Scores[0].score
+                                                                        score: player.player.so5Scores[0].score
                                                                 });
-                                                                console.log(player, 'playerrrrr');
-                                                                console.log(player.so5Scores)
                                                         });
                                                         console.log(teamWithScore);
                                                 });
