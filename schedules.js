@@ -67,7 +67,7 @@ module.exports.cron_job = async () =>
                                                         // we create an array with slugs of card
                                                         const slugsArray = [];
                                                         registration.dataValues.cards.map( async (card) => {
-                                                                let slugModif = card.slug.replace(/["']/g, "");
+                                                                let slugModif = card.slug.replace(/'/g,'"');
                                                                 slugsArray.push(slugModif);
                                                         });
                                                         console.log(slugsArray);
