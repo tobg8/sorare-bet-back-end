@@ -103,8 +103,9 @@ module.exports.cron_job = async () =>
                                                                         score: player.player.so5Scores[0].score
                                                                 });
                                                         });
-                                                        console.log(teamWithScore);
+                                                        let totalScore = 0;
                                                         for (const card of teamWithScore) {
+                                                                totalScore += Math.round(card.score);
                                                                 const cardToUpdate = await Card.findOne({
                                                                         where: {
                                                                               slug: card.slug  
@@ -115,6 +116,8 @@ module.exports.cron_job = async () =>
                                                                         await cardToUpdate.save();
                                                                 };
                                                         }
+                                                        // Card have score now for each registration we sumup this score and we post in registration total_score.
+                                                        console.log(totalScore);
                                                 });
                                                 
                                                 
