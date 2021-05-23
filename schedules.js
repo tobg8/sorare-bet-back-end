@@ -111,7 +111,7 @@ module.exports.cron_job = async () =>
                                                                         }
                                                                 });
                                                                 if (cardToUpdate) {
-                                                                        cardToUpdate.score = card.score
+                                                                        cardToUpdate.score = Math.round(card.score)
                                                                         await cardToUpdate.save();
                                                                 };
                                                         }
