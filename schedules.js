@@ -104,6 +104,17 @@ module.exports.cron_job = async () =>
                                                                 });
                                                         });
                                                         console.log(teamWithScore);
+                                                        for (const card of teamWithScore) {
+                                                                const cardToUpdate = await Card.findOne({
+                                                                        where: {
+                                                                              slug: card.slug  
+                                                                        }
+                                                                });
+                                                                if (cardToUpdate) {
+                                                                        cardToUpdate.score = card.score
+                                                                        await cardToUpdate.save();
+                                                                };
+                                                        }
                                                 });
                                                 
                                                 
