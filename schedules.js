@@ -71,26 +71,13 @@ module.exports.cron_job = async () =>
                                                         });
                                                         slugsArray.map((slug) => slug.replace(/["']/g, ""));
                                                         console.log(slugsArray);
-                                                        testSlugs = [
-                                                                "yuta-matsumura-2020-rare-38",
-                                                                "thibaut-courtois-2020-common-b53109ab-0dd1-4400-a982-2cbf10723312",
-                                                                "laurtaro-giaccone-2020-rare-2",
-                                                                "fabrice-olinga-essono-2020-rare-25",
-                                                                "david-ospina-ramirez-2020-common-973982a6-755c-453b-81f1-ece786217a6b"
-                                                        ]
                                                         // then we query last score of cards using our slugsArray
                                                         const fetchScores = await axios({
                                                                 url: url,
                                                                 method:'post',
                                                                 data: {
                                                                         query:`{
-                                                                                cards(slugs:[
-                                                                                "yuta-matsumura-2020-rare-38",
-                                                                                "thibaut-courtois-2020-common-b53109ab-0dd1-4400-a982-2cbf10723312",
-                                                                                "laurtaro-giaccone-2020-rare-2",
-                                                                                "fabrice-olinga-essono-2020-rare-25",
-                                                                                "david-ospina-ramirez-2020-common-973982a6-755c-453b-81f1-ece786217a6b"
-                                                                              ]) {
+                                                                                cards(slugs:${slugsArray}) {
                                                                                   player {
                                                                                     so5Scores(last: 1) {
                                                                                       score
