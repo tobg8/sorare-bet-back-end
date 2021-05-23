@@ -117,7 +117,8 @@ module.exports.cron_job = async () =>
                                                                 };
                                                         }
                                                         // Card have score now for each registration we sumup this score and we post in registration total_score.
-                                                        console.log(totalScore);
+                                                        registration.total_score = totalScore;
+                                                        await registration.save();
                                                 });
                                                 
                                                 
