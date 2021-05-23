@@ -83,7 +83,7 @@ module.exports.cron_job = async () =>
                                                                 method:'post',
                                                                 data: {
                                                                         query:`{
-                                                                                cards(slugs:[${ok}]) {
+                                                                                cards(slugs:[${[...ok]}]) {
                                                                                   player {
                                                                                     so5Scores(last: 1) {
                                                                                       score
