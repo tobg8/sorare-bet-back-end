@@ -75,7 +75,7 @@ module.exports.cron_job = async () =>
                                                                 url: url,
                                                                 method:'post',
                                                                 data: {
-                                                                        query:`
+                                                                        query:`{
                                                                                 cards(slugs:${slugsArray}) {
                                                                                         player {
                                                                                                 so5Scores(last: 1) {
@@ -83,10 +83,11 @@ module.exports.cron_job = async () =>
                                                                                                 }
                                                                                         }
                                                                                 }
+                                                                        }
                                                                         `
                                                                 },
                                                         });
-                                                        console.log(fetchScores.data.errors);
+                                                        console.log(fetchScores.data);
                                                 });
                                                 
                                                 
