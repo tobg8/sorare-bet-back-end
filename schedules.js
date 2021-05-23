@@ -70,16 +70,13 @@ module.exports.cron_job = async () =>
                                                                 slugsArray.push(card.slug);
                                                         });
                                                         console.log(slugsArray);
-                                                        console.log("coool");
-                                                        slugsArray.map((slug) => slug.replace(/'/g,'"'));
-                                                        console.log(slugsArray);
                                                         // then we query last score of cards using our slugsArray
                                                         const fetchScores = await axios({
                                                                 url: url,
                                                                 method:'post',
                                                                 data: {
                                                                         query:`{
-                                                                                cards(slugs:${slugsArray.map((slug) => slug.replace(/'/g,'"'))}) {
+                                                                                cards(slugs:${[...slugsArray]}) {
                                                                                   player {
                                                                                     so5Scores(last: 1) {
                                                                                       score
@@ -91,6 +88,7 @@ module.exports.cron_job = async () =>
                                                                 },
                                                         });
                                                         console.log(fetchScores.data);
+                                                        console.log(fetchScores);
                                                 });
                                                 
                                                 
