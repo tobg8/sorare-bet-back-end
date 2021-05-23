@@ -62,6 +62,12 @@ module.exports.cron_job = async () =>
                                                 }, include: ['cards'],
                                                 });
                                                 console.log(league, registrations);
+                                                // For each card of each registration
+                                                registrations.map((registration) => {
+                                                        console.log(registration.dataValues.cards);
+                                                })
+                                                // we create an array with slugs of card
+                                                // then we query last score
         
                                         }
                                 }
