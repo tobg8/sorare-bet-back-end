@@ -32,7 +32,7 @@ CREATE TABLE "card" (
     "id" SERIAL PRIMARY KEY,
     "slug" TEXT NOT NULL,
     "picture_url" TEXT NOT NULL,
-    "score" INTEGER NOT NULL DEFAULT 0,
+    "score" INTEGER DEFAULT 0,
     "registration_id" INTEGER NOT NULL REFERENCES "registration" ("id") ON DELETE CASCADE
 );
 

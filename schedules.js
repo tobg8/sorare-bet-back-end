@@ -77,6 +77,7 @@ module.exports.cron_job = async () =>
                                                                 data: {
                                                                         query:`{
                                                                                 cards(slugs:[${slugsArray}]) {
+                                                                                slug
                                                                                   player {
                                                                                     so5Scores(last: 1) {
                                                                                       score
@@ -88,6 +89,13 @@ module.exports.cron_job = async () =>
                                                                 },
                                                         });
                                                         console.log(fetchScores.data.data.cards)
+                                                        const teamWithScore = []
+                                                        fetchScores.data.data.cards.map((player) => {
+                                                                // teamWithScore.push({
+                                                                //         slug: 
+                                                                // })
+                                                                console.log(player);
+                                                        })
                                                 });
                                                 
                                                 
