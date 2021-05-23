@@ -27,11 +27,11 @@ INSERT INTO "card" (
     "picture_url",
     "registration_id"
 ) VALUES
-('yuta-matsumura-2020-rare-38','ok', 5),
-('thibaut-courtois-2020-common-b53109ab-0dd1-4400-a982-2cbf10723312','ok', 5),
-('laurtaro-giaccone-2020-rare-2','ok', 5),
-('fabrice-olinga-essono-2020-rare-25','ok', 5),
-('david-ospina-ramirez-2020-common-973982a6-755c-453b-81f1-ece786217a6b','ok', 5);
+('yuta-matsumura-2020-rare-38','ok', 1),
+('thibaut-courtois-2020-common-b53109ab-0dd1-4400-a982-2cbf10723312','ok', 1),
+('laurtaro-giaccone-2020-rare-2','ok', 1),
+('fabrice-olinga-essono-2020-rare-25','ok', 1),
+('david-ospina-ramirez-2020-common-973982a6-755c-453b-81f1-ece786217a6b','ok', 1);
 -- ('yuta-matsumura-2020-rare-38', 6),
 -- ('ho-ik-jang-2021-common-d6eda32f-f7ac-4522-af70-7741c10c35bf', 6),
 -- ('maarten-stekelenburg-2020-common-dbcbe8a9-d41f-4cba-8947-fb9e0864953a', 6),

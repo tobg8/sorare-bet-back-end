@@ -58,7 +58,7 @@ module.exports.cron_job = async () =>
                                         if (league.aasmState === 'closed') {
                                                 const registrations = await Registration.findAll({
                                                 where: {
-                                                        game_week: league.gameWeek
+                                                        league_id: leagueAlreadyInDB.id
                                                 }, include: ['cards'],
                                                 });
                                                 console.log(league, registrations);
