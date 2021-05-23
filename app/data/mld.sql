@@ -23,6 +23,7 @@ CREATE TABLE "registration" (
     "manager_id" TEXT NOT NULL DEFAULT '',
     "manager_picture" TEXT NOT NULL DEFAULT '',
     "total_score" INTEGER NOT NULL DEFAULT 0,
+    "prize" TEXT NOT NULL DEFAULT '',
     "league_id" INTEGER NOT NULL REFERENCES "league" ("id") ON DELETE CASCADE
 );
 
@@ -31,6 +32,7 @@ CREATE TABLE "card" (
     "id" SERIAL PRIMARY KEY,
     "slug" TEXT NOT NULL,
     "picture_url" TEXT NOT NULL,
+    "score" INTEGER NOT NULL DEFAULT 0,
     "registration_id" INTEGER NOT NULL REFERENCES "registration" ("id") ON DELETE CASCADE
 );
 

@@ -15,25 +15,23 @@ INSERT INTO "league" (
 (167, '19-21-may', '2021-05-14T17:00:00Z', '2021-05-18T04:00:00Z', 200, FALSE, 'started'),
 (168, '21-25-may', '2021-05-18T17:00:00Z', '2021-05-21T04:00:00Z', 200, TRUE, 'opened');
 
--- INSERT INTO "registration" (
---     "manager_name",
---     "manager_id",
---     "league_id"
--- ) VALUES
--- ('to88','id to88', 6),
--- ('django33','id django33', 6),
--- ('mcfull','id mcfull', 6),
--- ('ryann', 'id ryann', 6);
+INSERT INTO "registration" (
+    "manager_name",
+    "manager_id",
+    "league_id"
+) VALUES
+('to88','id to88', 2);
 
--- INSERT INTO "card" (
---     "slug",
---     "registration_id"
--- ) VALUES
--- ('yuta-matsumura-2020-rare-38', 5),
--- ('thibaut-courtois-2020-common-b53109ab-0dd1-4400-a982-2cbf10723312', 5),
--- ('laurtaro-giaccone-2020-rare-2', 5),
--- ('fabrice-olinga-essono-2020-rare-25', 5),
--- ('david-ospina-ramirez-2020-common-973982a6-755c-453b-81f1-ece786217a6b', 5),
+INSERT INTO "card" (
+    "slug",
+    "picture_url",
+    "registration_id"
+) VALUES
+('yuta-matsumura-2020-rare-38','ok', 5),
+('thibaut-courtois-2020-common-b53109ab-0dd1-4400-a982-2cbf10723312','ok', 5),
+('laurtaro-giaccone-2020-rare-2','ok', 5),
+('fabrice-olinga-essono-2020-rare-25','ok', 5),
+('david-ospina-ramirez-2020-common-973982a6-755c-453b-81f1-ece786217a6b','ok', 5);
 -- ('yuta-matsumura-2020-rare-38', 6),
 -- ('ho-ik-jang-2021-common-d6eda32f-f7ac-4522-af70-7741c10c35bf', 6),
 -- ('maarten-stekelenburg-2020-common-dbcbe8a9-d41f-4cba-8947-fb9e0864953a', 6),

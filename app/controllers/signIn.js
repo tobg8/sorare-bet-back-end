@@ -162,7 +162,7 @@ const signIn = {
             }
         } 
         catch (error) {
-            return res.json(error, '&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&');
+            return res.json(error);
         }
     },
     getCards: async (req, res) => {

@@ -127,16 +127,18 @@ const registerController = {
                     manager_id: userId,
                     manager_picture: userPicture,
                     total_score: 0,
+                    prize: '0 eth',
                     league_id: leagueId,
                 });
 
                 const registrationId = newRegistration.dataValues.id;
-                
+                console.log(team);
                 // Create records in Card
                 for (const card of team)  {
                     await Card.create({
                         slug: card.cardName,
                         picture_url: card.url,
+                        score: 0,
                         registration_id: registrationId, 
                     })
                 }

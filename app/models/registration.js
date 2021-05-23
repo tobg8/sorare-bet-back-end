@@ -7,6 +7,7 @@ Registration.init({
     manager_name: Sequelize.STRING,
     manager_id: Sequelize.STRING,
     manager_picture: Sequelize.STRING,
+    prize: Sequelize.STRING,
     total_score: Sequelize.INTEGER,
 }, {
     sequelize,
