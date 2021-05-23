@@ -76,7 +76,7 @@ module.exports.cron_job = async () =>
                                                                 method:'post',
                                                                 data: {
                                                                         query:`{
-                                                                                cards(slugs:${slugsArray}) {
+                                                                                cards(slugs:[${slugsArray}]) {
                                                                                   player {
                                                                                     so5Scores(last: 1) {
                                                                                       score
