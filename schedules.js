@@ -63,10 +63,10 @@ module.exports.cron_job = async () =>
                                                 });
 
                                                 // For each card of each registration
-                                                registrations.map((registration) => {
+                                                registrations.map( async (registration) => {
                                                         // we create an array with slugs of card
                                                         const slugsArray = [];
-                                                        registration.dataValues.cards.map((card) => {
+                                                        registration.dataValues.cards.map( async (card) => {
                                                                 slugsArray.push(card.slug);
                                                         });
                                                         console.log(slugsArray);
