@@ -92,6 +92,7 @@ module.exports.cron_job = async () =>
                                                         const teamWithScore = []
                                                         fetchScores.data.data.cards.map((player) => {
                                                                 if (player.player.so5Scores[0].score === null) {
+                                                                        console.log('null here');
                                                                         teamWithScore.push({
                                                                                 slug: player.slug,
                                                                                 score: 0,
