@@ -88,14 +88,15 @@ module.exports.cron_job = async () =>
                                                                         `
                                                                 },
                                                         });
-                                                        console.log(fetchScores.data.data.cards)
+                                                
                                                         const teamWithScore = []
                                                         fetchScores.data.data.cards.map((player) => {
-                                                                // teamWithScore.push({
-                                                                //         slug: 
-                                                                // })
-                                                                console.log(player);
-                                                        })
+                                                                teamWithScore.push({
+                                                                        slug: player.slug,
+                                                                        score: player.so5Scores[0].score
+                                                                });
+                                                        });
+                                                        console.log(teamWithScore);
                                                 });
                                                 
                                                 
