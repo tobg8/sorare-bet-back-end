@@ -95,6 +95,7 @@ module.exports.cron_job = async () =>
                                                                         slug: player.slug,
                                                                         // score: player.so5Scores[0].score
                                                                 });
+                                                                console.log(player, 'playerrrrr');
                                                                 console.log(player.so5Scores)
                                                         });
                                                         console.log(teamWithScore);
