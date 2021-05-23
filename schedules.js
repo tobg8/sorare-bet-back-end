@@ -86,7 +86,7 @@ module.exports.cron_job = async () =>
                                                                         `
                                                                 },
                                                         });
-                                                        console.log(fetchScores);
+                                                        console.log(fetchScores.data.errors);
                                                 });
                                                 
                                                 
