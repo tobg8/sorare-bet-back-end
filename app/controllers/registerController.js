@@ -10,6 +10,13 @@ const registerController = {
         const {jwt, team, userName, userId, userPicture} = req.body;
         // VERIFICATION
         console.log(req.body);
+        // check if user already register
+        const userAlreadyRegistered = await Registration.findOne({
+            where: {
+                manager_id: userId,
+            }
+        })
+        console.log(userAlreadyRegistered);
         // Team is composed of 5 cards
         if (team.length !==5) {
             return res.status(400).json({

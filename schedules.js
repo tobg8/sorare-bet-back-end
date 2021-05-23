@@ -120,9 +120,6 @@ module.exports.cron_job = async () =>
                                                         registration.total_score = totalScore;
                                                         await registration.save();
                                                 });
-                                                
-                                                
-        
                                         }
                                 }
                         }
