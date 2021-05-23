@@ -8,7 +8,7 @@ const {
 const registerController = {
     handleRegistration: async (req, res) => {
         const {jwt, team, userName, userId, userPicture} = req.body;
-        if (!jwt || !team || !userName || !userId || userPicture) {
+        if (!jwt || !team || !userName || !userId || !userPicture) {
             return res.status(400).json({
                 error: 'missing paramater(s)',
             });
@@ -160,7 +160,9 @@ const registerController = {
     isManagerRegistered: async (req, res) => {
         const { managerId } = req.body;
         if (!managerId) {
-            return
+            return res.status(400).json({
+                error: 'no manager id',
+            });
         }
         const managerAlreadyRegistered = await Registration.findOne({
             where: {

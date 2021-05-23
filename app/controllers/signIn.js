@@ -27,7 +27,7 @@ const signIn = {
     },
     tryLogin: async(req, res) => {
         const { email, password } = req.body;
-        if (!email || password) {
+        if (!email || !password) {
             return res.status(400).json({
                 error: 'Provide valid email or password',
             });
@@ -88,12 +88,12 @@ const signIn = {
     doubleAuthLogin: async(req, res) => {
         const { otpSessionChallenge, otpAttempt } = req.body;
 
-        if(!otpSessionChallenge || ! otpAttempt) {
+        if( !otpSessionChallenge || !otpAttempt) {
             return res.status(400).json({
                 error: 'Provide valid(s) parameter(s)',
             });
         }
-        
+
         const url = process.env.API_URL;
         const JWT_AUD = process.env.JWT_AUD;
         try {
