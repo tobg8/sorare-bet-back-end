@@ -66,7 +66,7 @@ module.exports.cron_job = async () =>
                                                 registrations.map((registration) => {
                                                         console.log('registration', registration);
                                                         const slugsArray = [];
-                                                        registration.map((card) => {
+                                                        registration.dataValues.cards.map((card) => {
                                                                 slugsArray.push(card.slug);
                                                         });
                                                         console.log(slugsArray);
