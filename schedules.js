@@ -61,18 +61,35 @@ module.exports.cron_job = async () =>
                                                         league_id: leagueAlreadyInDB.id
                                                 }, include: ['cards'],
                                                 });
-                                                console.log(league, registrations);
+
                                                 // For each card of each registration
                                                 registrations.map((registration) => {
-                                                        console.log('registration', registration);
+                                                        // we create an array with slugs of card
                                                         const slugsArray = [];
                                                         registration.dataValues.cards.map((card) => {
                                                                 slugsArray.push(card.slug);
                                                         });
                                                         console.log(slugsArray);
+                                                        // then we query last score of cards using our slugsArray
+                                                        const fetchScores = await axios({
+                                                                url: url,
+                                                                method:'post',
+                                                                data: {
+                                                                        query:`
+                                                                                cards(slugs:${slugsArray}) {
+                                                                                        player {
+                                                                                                so5Scores(last: 1) {
+                                                                                                        score
+                                                                                                }
+                                                                                        }
+                                                                                }
+                                                                        `
+                                                                },
+                                                        });
+                                                        console.log(fetchScores);
                                                 });
-                                                // we create an array with slugs of card
-                                                // then we query last score
+                                                
+                                                
         
                                         }
                                 }
