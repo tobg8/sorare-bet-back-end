@@ -64,8 +64,13 @@ module.exports.cron_job = async () =>
                                                 console.log(league, registrations);
                                                 // For each card of each registration
                                                 registrations.map((registration) => {
-                                                        console.log(registration.dataValues.cards);
-                                                })
+                                                        console.log('registration', registration);
+                                                        const slugsArray = [];
+                                                        registration.map((card) => {
+                                                                slugsArray.push(card.slug);
+                                                        });
+                                                        console.log(slugsArray);
+                                                });
                                                 // we create an array with slugs of card
                                                 // then we query last score
         
