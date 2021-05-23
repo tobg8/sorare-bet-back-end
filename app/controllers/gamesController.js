@@ -38,6 +38,11 @@ const gamesController = {
     },
     getRemainingPlaces: async (req, res) => {
         const {gameWeek} = req.body;
+        if (!gameWeek) {
+            return res.status(400).json({
+                error: 'Provide gameWeek',
+            });
+        }
         try {
             const league = await League.findOne({
                 where: {
@@ -91,6 +96,13 @@ const gamesController = {
     },
     getTeamFromManager: async (req, res) => {
         const {registrationId, gameWeek } = req.body;
+
+        if(!registrationId || !gameWeek) {
+            return res.status(400).json({
+                error: 'missing parameter(s)',
+            });
+        }
+        
         try {
             const team = await Card.findAll({
                 where: {
@@ -120,6 +132,13 @@ const gamesController = {
     },
     getManagersTeamFromLeague: async (req, res) => {
         const { gameWeek } = req.body;
+        
+        if (!gameWeek) {
+            return res.status(400).json({
+                error: 'missing gameWeek',
+            });
+        }
+
         try {
             // retrieve league Id
             const league = await League.findOne({

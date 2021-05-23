@@ -27,6 +27,11 @@ const signIn = {
     },
     tryLogin: async(req, res) => {
         const { email, password } = req.body;
+        if (!email || password) {
+            return res.status(400).json({
+                error: 'Provide valid email or password',
+            });
+        }
         const url = process.env.API_URL;
         const JWT_AUD = process.env.JWT_AUD;
         try {
@@ -82,6 +87,13 @@ const signIn = {
     },
     doubleAuthLogin: async(req, res) => {
         const { otpSessionChallenge, otpAttempt } = req.body;
+
+        if(!otpSessionChallenge || ! otpAttempt) {
+            return res.status(400).json({
+                error: 'Provide valid(s) parameter(s)',
+            });
+        }
+        
         const url = process.env.API_URL;
         const JWT_AUD = process.env.JWT_AUD;
         try {
@@ -129,13 +141,13 @@ const signIn = {
     },
     getUserInfos: async (req, res) => {
         const { jwt } = req.body;
+        if (!jwt) {
+            return res.status(400).json({
+                error: 'Provide valid JWT token',
+            });
+        }
         const url = process.env.API_URL;
         try {
-            if(!jwt) {
-                res.status(400).json({
-                    error: 'not signed in',
-                });
-            }
             const response = await axios ({
                 url: url,
                 method: 'post',
@@ -167,14 +179,14 @@ const signIn = {
     },
     getCards: async (req, res) => {
         const { jwt } = req.body;
+    
         const url = process.env.API_URL;
+        if(!jwt) {
+            res.status(400).json({
+                error: 'not signed in',
+            });
+        }
         try {
-            if(!jwt) {
-                res.status(400).json({
-                    error: 'not signed in',
-                });
-            }
-
             const response = await axios ({
                 url: url,
                 method: 'post',
