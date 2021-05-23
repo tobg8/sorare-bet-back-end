@@ -67,10 +67,9 @@ module.exports.cron_job = async () =>
                                                         // we create an array with slugs of card
                                                         const slugsArray = [];
                                                         registration.dataValues.cards.map( async (card) => {
-                                                                slugsArray.push(card.slug);
+                                                                let slugModif = card.slug.replace(/["']/g, "");
+                                                                slugsArray.push(slugModif);
                                                         });
-                                                        console.log(slugsArray);
-                                                        slugsArray.map((slug) => slug.replace(/["']/g, ""));
                                                         console.log(slugsArray);
                                                         // then we query last score of cards using our slugsArray
                                                         const fetchScores = await axios({
@@ -78,7 +77,7 @@ module.exports.cron_job = async () =>
                                                                 method:'post',
                                                                 data: {
                                                                         query:`{
-                                                                                cards(slugs:[${slugsArray}]) {
+                                                                                cards(slugs:${slugsArray}) {
                                                                                   player {
                                                                                     so5Scores(last: 1) {
                                                                                       score
