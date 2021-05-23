@@ -77,6 +77,7 @@ module.exports.cron_job = async () =>
                                                                 "fabrice-olinga-essono-2020-rare-25",
                                                                 "david-ospina-ramirez-2020-common-973982a6-755c-453b-81f1-ece786217a6b"
                                                               ]
+                                                        console.log(ok);
                                                         // then we query last score of cards using our slugsArray
                                                         const fetchScores = await axios({
                                                                 url: url,
