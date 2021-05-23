@@ -67,7 +67,7 @@ module.exports.cron_job = async () =>
                                                         // we create an array with slugs of card
                                                         const slugsArray = [];
                                                         registration.dataValues.cards.map( async (card) => {
-                                                                slugsArray.push(card.slug);
+                                                                slugsArray.push(`"${card.slug}"`);
                                                         });
                                                         console.log(slugsArray);
                                                         // then we query last score of cards using our slugsArray
