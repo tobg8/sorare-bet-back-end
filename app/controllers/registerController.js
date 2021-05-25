@@ -162,6 +162,12 @@ const registerController = {
         error: 'no manager id',
       });
     }
+    const currentLeague = await League.findOne({
+      where: {
+        status: 'opened'
+      }
+    });
+
     const managerAlreadyRegistered = await Registration.findOne({
       where: {
         manager_id: managerId,
@@ -179,6 +185,7 @@ const registerController = {
         registered: true,
         message: 'You are registered',
         test: managerAlreadyRegistered,
+        ok: currentLeague,
       });
     }
     return res.status(200);
