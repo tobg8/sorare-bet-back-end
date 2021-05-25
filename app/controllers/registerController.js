@@ -120,7 +120,7 @@ const registerController = {
           where: {
             game_week: gwLeague,
           },
-        },
+        }
       });
       if (managerAlreadyRegistered) {
         return res.status(403).json({
@@ -193,8 +193,6 @@ const registerController = {
       return res.status(200).json({
         registered: true,
         message: 'You are registered',
-        test: managerAlreadyRegistered,
-        ok: currentLeague,
       });
     }
     return res.status(200);
