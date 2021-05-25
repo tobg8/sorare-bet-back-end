@@ -103,11 +103,11 @@ const registerController = {
       const gwLeague = currentLeague.dataValues.game_week;
 
       // If already registered
-      const currentLeague = await League.findOne({
-        where: {
-          status: 'opened'
-        }
-      });
+      // const currentLeague = await League.findOne({
+      //   where: {
+      //     status: 'opened'
+      //   }
+      // });
 
       const managerAlreadyRegistered = await Registration.findOne({
         where: {
