@@ -171,6 +171,7 @@ const registerController = {
     const managerAlreadyRegistered = await Registration.findOne({
       where: {
         manager_id: managerId,
+        league_id: currentLeague.id
       },
     }, {
       include: {
