@@ -26,8 +26,8 @@ const registerController = {
     }
 
     const scoreLimit = team.filter((card) => card.avgScore > 45);
-
-    if(scoreLimit) {
+    
+    if(scoreLimit.length > 0) {
       return res.status(400).json({
         error: 'You used a card with a 45+ average score',
       });
@@ -80,6 +80,7 @@ const registerController = {
     const formatTeam = team.map((item) => ({
       slug: item.cardName,
     }));
+
     const compareCards = managerCards.map((card) => formatTeam.filter((item) => item.slug === card.slug));
     compareCards.forEach((array) => {
       if (array.length > 0) {
