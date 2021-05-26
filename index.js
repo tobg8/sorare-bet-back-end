@@ -6,7 +6,7 @@ const router = require('./app/router');
 
 
 app.use(cors({
-    origin: ['http://localhost:8080', 'https://sorare-bet.surge.sh'],
+    origin: ['http://localhost:8080', 'https://sorare-league.surge.sh'],
 }));
 app.use(express.json());
 
