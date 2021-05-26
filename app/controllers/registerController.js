@@ -24,6 +24,14 @@ const registerController = {
         error: 'Incomplete team',
       });
     }
+
+    const scoreLimit = team.filter((card) => card.avgScore > 45);
+
+    if(scoreLimit) {
+      return res.status(400).json({
+        error: 'You used a card with a 45+ average score',
+      });
+    }
     // Only one common card
     const oneCommon = team.filter((card) => card.rarity === 'common');
     if (oneCommon.length > 1) {
@@ -55,14 +63,14 @@ const registerController = {
       },
       data: {
         query: `
-                    {
-                    currentUser {
-                        cards {
-                            slug
-                        }
-                    }
-                }
-                `,
+        {
+          currentUser {
+              cards {
+                  slug
+              }
+          }
+        }
+        `,
       },
     });
     const managerCards = response.data.data.currentUser.cards;

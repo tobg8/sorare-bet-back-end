@@ -41,24 +41,24 @@ const signIn = {
         method: 'post',
         data: {
           query: `
-                        mutation SignInMutation($input: signInInput!) {
-                            signIn(input: $input) {
-                            currentUser {
-                                id
-                                slug
-                                jwtToken (aud:${JWT_AUD}) {
-                                    token
-                                }
-                            }
-                            otpSessionChallenge
-                            errors {
-                                message
-                                code 
-                                path
-                            }
-                            } 
-                        }
-                    `,
+          mutation SignInMutation($input: signInInput!) {
+              signIn(input: $input) {
+              currentUser {
+                  id
+                  slug
+                  jwtToken (aud:${JWT_AUD}) {
+                      token
+                  }
+              }
+              otpSessionChallenge
+              errors {
+                  message
+                  code 
+                  path
+              }
+              } 
+          }
+        `,
           variables: {
             input: {
               email,
@@ -236,8 +236,10 @@ const signIn = {
         `,
         },
       });
+      const cards = response.data.data.currentUser.cards;
+      const cardsWithNoNulls = cards.filter((card) => card.player.activeClub !== null);
       if (response.status === 200) {
-        res.status(200).json(response.data.data.currentUser.cards);
+        res.status(200).json(cardsWithNoNulls);
       }
     }
     catch (error) {
