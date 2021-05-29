@@ -13,7 +13,7 @@ INSERT INTO "league" (
  VALUES
 -- (166, '14-18-may', '2021-05-18T17:00:00Z', '2021-05-21T04:00:00Z', 200, FALSE, 'closed'),
 -- (167, '19-21-may', '2021-05-14T17:00:00Z', '2021-05-18T04:00:00Z', 200, FALSE, 'started'),
-(170, '21-25-may', '2021-05-18T17:00:00Z', '2021-05-21T04:00:00Z', 200, TRUE, 'opened');
+(171, '21-25-may', '2021-05-18T17:00:00Z', '2021-05-21T04:00:00Z', 200, TRUE, 'opened');
 
 INSERT INTO "registration" (
     "manager_name",

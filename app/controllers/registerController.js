@@ -54,6 +54,7 @@ const registerController = {
         error: 'You cannot use a card twice',
       });
     }
+    
     // Je peux récupérer les cartes de l'user via CurrentUser (il détient bien ces cartes);
     const response = await axios({
       url: process.env.API_URL,
@@ -111,12 +112,21 @@ const registerController = {
       const leagueId = currentLeague.dataValues.id;
       const gwLeague = currentLeague.dataValues.game_week;
 
-      // If already registered
-      // const currentLeague = await League.findOne({
-      //   where: {
-      //     status: 'opened'
-      //   }
-      // });
+      // Cards plays in current gameWeek
+      team.map((card) => {
+        if (card.upcomingGames.length < 0) {
+          return res.status(400).json({
+            error: 'Player(s) do not play in this game week',
+          });
+        }
+        card.upcomingGames.map((game) => {
+          if (game.so5Fixture === null || game.so5Fixture.gameWeek !== gwLeague) {
+            return res.status(400).json({
+              error: 'Player(s) do not play in this game week',
+            });
+          }
+        })
+      });
 
       const managerAlreadyRegistered = await Registration.findOne({
         where: {
@@ -152,7 +162,7 @@ const registerController = {
       });
 
       const registrationId = newRegistration.dataValues.id;
-      console.log(team);
+      console.log(team, '&&&&&&&&&&&&&&&&&');
       // Create records in Card
       for (const card of team) {
         await Card.create({
